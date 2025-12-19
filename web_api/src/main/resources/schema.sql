@@ -33,6 +33,8 @@ CREATE TABLE IF NOT EXISTS client (
     email VARCHAR(50) NOT NULL,
     phone_number VARCHAR(20) NOT NULL,
     address VARCHAR(100) NOT NULL,
+	latitude DECIMAL(8, 6),
+	longitude DECIMAL(9, 6),
     creation_date DATETIME NOT NULL DEFAULT NOW()
 );
 

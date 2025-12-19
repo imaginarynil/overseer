@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS practice;
-CREATE DATABASE practice;
-USE practice;
+DROP DATABASE IF EXISTS overseer_dev;
+CREATE DATABASE overseer_dev;
+USE overseer_dev;
 
 SELECT DATABASE();
 
@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS client (
     email VARCHAR(50) NOT NULL,
     phone_number VARCHAR(20) NOT NULL,
     address VARCHAR(100) NOT NULL,
+	latitude DECIMAL(8, 6),
+	longitude DECIMAL(9, 6),
     creation_date DATETIME NOT NULL DEFAULT NOW()
 );
 
@@ -67,3 +69,9 @@ CREATE TABLE IF NOT EXISTS employee_job (
 );
 ALTER TABLE employee_job ADD FOREIGN KEY (employee_id) REFERENCES employee(id);
 ALTER TABLE employee_job ADD FOREIGN KEY (job_id) REFERENCES job(id);
+
+/* References
+- latitude and longitude field:
+	- https://www.baeldung.com/sql/mysql-latitude-longitude-storage
+    - https://stackoverflow.com/questions/1196415/what-datatype-to-use-when-storing-latitude-and-longitude-data-in-sql-databases
+*/
