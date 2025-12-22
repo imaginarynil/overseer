@@ -3,10 +3,7 @@ package com.imaginarynil.overseer.controller;
 import com.imaginarynil.overseer.dto.EmployeeRequest;
 import com.imaginarynil.overseer.model.Employee;
 import com.imaginarynil.overseer.service.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class EmployeeController {
@@ -24,5 +21,10 @@ public class EmployeeController {
     @GetMapping("/employee")
     public Iterable<Employee> findAll() {
         return this.employeeService.findAll();
+    }
+
+    @GetMapping("/employee/{id}")
+    public Employee findById(@PathVariable long id) {
+        return this.employeeService.findById(id);
     }
 }
