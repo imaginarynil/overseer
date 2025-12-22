@@ -22,7 +22,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee")
-    public Iterable<Employee> findAll(@RequestBody EmployeeRequest request) {
+    public Iterable<Employee> findAll() {
         return this.employeeService.findAll();
     }
 }
