@@ -13,7 +13,7 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public void createEmployee(Employee employee) {
+    public void save(Employee employee) {
         this.employeeRepository.save(employee);
     }
 

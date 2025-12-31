@@ -7,11 +7,11 @@ import java.math.BigDecimal;
 public class Employee {
     @Id
     private long id;
-    private final long managerId;
-    private final String name;
-    private final String username;
-    private final String password;
-    private final String phoneNumber;
+    private long managerId;
+    private String name;
+    private String username;
+    private String password;
+    private String phoneNumber;
     private BigDecimal latitude;
     private BigDecimal longitude;
 

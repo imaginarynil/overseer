@@ -14,8 +14,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee")
-    public void createEmployee(@RequestBody EmployeeRequest request) {
-        this.employeeService.createEmployee(request.toModel());
+    public void create(@RequestBody EmployeeRequest request) {
+        this.employeeService.save(request.toModel());
     }
 
     @GetMapping("/employee")
@@ -23,8 +23,11 @@ public class EmployeeController {
         return this.employeeService.findAll();
     }
 
-    @GetMapping("/employee/{id}")
+    @GetMapping("/employee/{id}"
+    )
     public Employee findById(@PathVariable long id) {
         return this.employeeService.findById(id);
     }
+
+    // TODO: add get current location
 }
