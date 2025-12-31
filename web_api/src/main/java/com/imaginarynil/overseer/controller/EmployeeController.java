@@ -1,7 +1,9 @@
 package com.imaginarynil.overseer.controller;
 
+import com.imaginarynil.overseer.dto.EmployeeLocationRequest;
 import com.imaginarynil.overseer.dto.EmployeeRequest;
 import com.imaginarynil.overseer.model.Employee;
+import com.imaginarynil.overseer.model.EmployeeLocation;
 import com.imaginarynil.overseer.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,11 +25,14 @@ public class EmployeeController {
         return this.employeeService.findAll();
     }
 
-    @GetMapping("/employee/{id}"
-    )
+    @GetMapping("/employee/{id}")
     public Employee findById(@PathVariable long id) {
         return this.employeeService.findById(id);
     }
 
-    // TODO: add get current location
+    @GetMapping("/employee/{id}/location")
+    public EmployeeLocationRequest findLocationById(@PathVariable long id) {
+        EmployeeLocation employee = this.employeeService.findLocationById(id);
+        return new EmployeeLocationRequest(employee.getLatitude(), employee.getLongitude());
+    }
 }
