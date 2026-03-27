@@ -1,0 +1,5 @@
+# Flyway
+Run migration
+```
+mvn clean flyway:migrate -D flyway.configFiles=flyway.conf
+```
