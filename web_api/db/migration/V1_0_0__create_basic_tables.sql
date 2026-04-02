@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS manager (
     username VARCHAR(20) NOT NULL,
     password VARCHAR(20) NOT NULL,
     phone_number VARCHAR(20) NOT NULL,
-    creation_date DATETIME NOT NULL  DEFAULT NOW()
+    creation_date DATETIME NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE IF NOT EXISTS employee (
