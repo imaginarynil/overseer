@@ -1,38 +1,56 @@
 package com.imaginarynil.overseer.controller;
 
-import com.imaginarynil.overseer.dto.EmployeeLocationRequest;
-import com.imaginarynil.overseer.dto.EmployeeRequest;
 import com.imaginarynil.overseer.model.Employee;
-import com.imaginarynil.overseer.model.EmployeeLocation;
-import com.imaginarynil.overseer.service.EmployeeService;
+import com.imaginarynil.overseer.repository.EmployeeRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@RequestMapping("/employee")
 public class EmployeeController {
-    private final EmployeeService employeeService;
+    private final EmployeeRepository employeeRepository;
 
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public EmployeeController(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
 
-    @PostMapping("/employee")
-    public void create(@RequestBody EmployeeRequest request) {
-        this.employeeService.save(request.toModel());
+    @GetMapping
+    public List<Employee> findAll() {
+        return this.employeeRepository.findAll();
     }
 
-    @GetMapping("/employee")
-    public Iterable<Employee> findAll() {
-        return this.employeeService.findAll();
+    @PostMapping
+    public void create(@RequestBody Employee employee) {
+        this.employeeRepository.save(employee);
     }
 
-    @GetMapping("/employee/{id}")
-    public Employee findById(@PathVariable long id) {
-        return this.employeeService.findById(id);
-    }
-
-    @GetMapping("/employee/{id}/location")
-    public EmployeeLocationRequest findLocationById(@PathVariable long id) {
-        EmployeeLocation employee = this.employeeService.findLocationById(id);
-        return new EmployeeLocationRequest(employee.getLatitude(), employee.getLongitude());
-    }
+//    @PostMapping
+//    public void create(@RequestBody Employee employee) {
+//        this.employeeService.save(employee);
+//    }
+//
+//    @GetMapping
+//    public List<Employee> findAll() {
+//        return this.employeeService.findAll();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Employee> findById(@PathVariable long id) {
+//        Employee employee = this.employeeService.findById(id);
+//        if (employee == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(employee);
+//    }
+//
+//    @GetMapping("/{id}/location")
+//    public EmployeeLocation findLocationById(@PathVariable long id) {
+//        return this.employeeService.findLocationById(id);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void deleteById(@PathVariable long id) {
+//        this.employeeService.deleteById(id);
+//    }
 }

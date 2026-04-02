@@ -1,6 +1,5 @@
 package com.imaginarynil.overseer.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,15 +7,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Employee {
+public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,12 +23,9 @@ public class Employee {
     private String username;
     private String password;
     private String phoneNumber;
-    private BigDecimal latitude;
-    private BigDecimal longitude;
     @Column(insertable = false, updatable = false)
-    private LocalDateTime creationDate;
-    @ManyToOne
-    @JoinColumn(name = "manager_id")
-    @JsonBackReference
-    private Manager manager;
+    private Date creationDate;
+    @OneToMany(mappedBy = "manager") // mappedby is attribute from the owning side
+    @JsonManagedReference
+    Set<Employee> employees;
 }
