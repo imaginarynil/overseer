@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: overseer
+  datasource:
+    url: jdbc:mysql://localhost/overseer_dev
+    username: root
+    password: daniel
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
