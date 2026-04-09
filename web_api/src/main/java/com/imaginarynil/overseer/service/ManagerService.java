@@ -25,6 +25,11 @@ public class ManagerService {
         this.managerRepository.save(manager);
     }
 
+    public void delete(Long managerId) {
+        Manager manager = this.managerRepository.findById(managerId).orElseThrow(ManagerNotFoundException::new);
+        this.managerRepository.delete(manager);
+    }
+
 //    public void update(Manager manager) {
 //        Manager newManager = this.managerRepository.findById(manager.getId()).orElseThrow(ManagerNotFoundException::new);
 //    }

@@ -31,6 +31,11 @@ public class ManagerController {
         this.managerService.save(manager);
     }
 
+    @DeleteMapping("/{managerId}")
+    public void delete(@PathVariable Long managerId) {
+        this.managerService.delete(managerId);
+    }
+
     @ExceptionHandler(ManagerNotFoundException.class)
     ResponseEntity<Void> handleManagerNotFound() {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
