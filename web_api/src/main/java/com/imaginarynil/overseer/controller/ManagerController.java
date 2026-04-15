@@ -1,6 +1,7 @@
 package com.imaginarynil.overseer.controller;
 
 import com.imaginarynil.overseer.exception.ManagerNotFoundException;
+import com.imaginarynil.overseer.model.Employee;
 import com.imaginarynil.overseer.model.Manager;
 import com.imaginarynil.overseer.service.ManagerService;
 import lombok.AllArgsConstructor;
@@ -44,5 +45,10 @@ public class ManagerController {
     @PutMapping("/{managerId}")
     public void update(@PathVariable Long managerId, @RequestBody Manager manager) {
         this.managerService.update(managerId, manager);
+    }
+
+    @PutMapping("/{managerId}/employees")
+    public void updateEmployees(@PathVariable Long managerId, @RequestBody Employee[] employees) {
+        this.managerService.updateEmployees(managerId, employees);
     }
 }
