@@ -30,7 +30,11 @@ public class ManagerService {
         this.managerRepository.delete(manager);
     }
 
-//    public void update(Manager manager) {
-//        Manager newManager = this.managerRepository.findById(manager.getId()).orElseThrow(ManagerNotFoundException::new);
-//    }
+    public void update(Long managerId, Manager request) {
+        Manager manager = this.managerRepository.findById(managerId).orElseThrow(ManagerNotFoundException::new);
+        manager.setName(request.getName());
+        manager.setUsername(request.getUsername());
+        manager.setPhoneNumber(request.getPhoneNumber());
+        this.managerRepository.save(manager);
+    }
 }

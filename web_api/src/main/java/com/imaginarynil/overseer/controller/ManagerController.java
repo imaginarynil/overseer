@@ -41,8 +41,8 @@ public class ManagerController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-//    @PutMapping
-//    public void update(@RequestBody Manager manager) {
-//        this.managerService.update(manager);
-//    }
+    @PutMapping("/{managerId}")
+    public void update(@PathVariable Long managerId, @RequestBody Manager manager) {
+        this.managerService.update(managerId, manager);
+    }
 }
