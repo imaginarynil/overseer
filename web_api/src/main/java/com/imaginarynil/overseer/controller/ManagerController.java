@@ -29,7 +29,7 @@ public class ManagerController {
 
     @PostMapping
     public void create(@RequestBody Manager manager) {
-        this.managerService.save(manager);
+        this.managerService.create(manager);
     }
 
     @DeleteMapping("/{managerId}")

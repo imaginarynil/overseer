@@ -25,7 +25,7 @@ public class ManagerService {
         return this.managerRepository.findById(managerId).orElseThrow(ManagerNotFoundException::new);
     }
 
-    public void save(Manager manager) {
+    public void create(Manager manager) {
         this.managerRepository.save(manager);
     }
 
