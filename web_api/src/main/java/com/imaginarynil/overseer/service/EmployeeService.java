@@ -20,4 +20,8 @@ public class EmployeeService {
     public Employee findById(Long employeeId) {
         return this.employeeRepository.findById(employeeId).orElseThrow(EmployeeNotFoundException::new);
     }
+
+    public void create(Employee employee) {
+        this.employeeRepository.save(employee);
+    }
 }
