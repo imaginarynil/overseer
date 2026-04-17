@@ -1,56 +1,39 @@
 package com.imaginarynil.overseer.controller;
 
+import com.imaginarynil.overseer.common.ErrorDto;
+import com.imaginarynil.overseer.exception.EmployeeNotFoundException;
 import com.imaginarynil.overseer.model.Employee;
-import com.imaginarynil.overseer.repository.EmployeeRepository;
+import com.imaginarynil.overseer.service.EmployeeService;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
+@AllArgsConstructor
 public class EmployeeController {
-    private final EmployeeRepository employeeRepository;
-
-    public EmployeeController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
+    private final EmployeeService employeeService;
 
     @GetMapping
     public List<Employee> findAll() {
-        return this.employeeRepository.findAll();
+        return this.employeeService.findAll();
     }
 
-    @PostMapping
-    public void create(@RequestBody Employee employee) {
-        this.employeeRepository.save(employee);
+    @GetMapping("/{employeeId}")
+    public Employee findById(@PathVariable Long employeeId) {
+        return this.employeeService.findById(employeeId);
     }
 
-//    @PostMapping
-//    public void create(@RequestBody Employee employee) {
-//        this.employeeService.save(employee);
-//    }
-//
-//    @GetMapping
-//    public List<Employee> findAll() {
-//        return this.employeeService.findAll();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Employee> findById(@PathVariable long id) {
-//        Employee employee = this.employeeService.findById(id);
-//        if (employee == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok(employee);
-//    }
-//
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public ResponseEntity<ErrorDto> handleEmployeeNotFoundException() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDto("Employee not found"));
+    }
+
 //    @GetMapping("/{id}/location")
 //    public EmployeeLocation findLocationById(@PathVariable long id) {
 //        return this.employeeService.findLocationById(id);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public void deleteById(@PathVariable long id) {
-//        this.employeeService.deleteById(id);
 //    }
 }

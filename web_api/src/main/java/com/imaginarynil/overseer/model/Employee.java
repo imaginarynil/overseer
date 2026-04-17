@@ -1,7 +1,6 @@
 package com.imaginarynil.overseer.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +28,7 @@ public class Employee {
     @Column(insertable = false, updatable = false)
     private LocalDateTime creationDate;
     @ManyToOne
-    @JoinColumn(name = "manager_id")
+    @JoinColumn(name = "manager_id", nullable = true)
     @JsonBackReference
     private Manager manager;
 }
